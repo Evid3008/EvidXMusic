@@ -8,22 +8,31 @@ from config import MUSIC_BOT_NAME
 
 @app.on_message(filters.command(["alive"]))
 async def start(client: Client, message: Message):
-    await message.reply_video(
-        video=f"https://graph.org/file/e999c40cb700e7c684b75.mp4",
-        caption=f"❤️ ʜᴇʏ {message.from_user.mention}\n\n🔮 ɪ ᴀᴍ {MUSIC_BOT_NAME}\n\n✨ ɪ ᴀᴍ ғᴀsᴛ ᴀɴᴅ ᴩᴏᴡᴇʀғᴜʟ ᴍᴜsɪᴄ ᴩʟᴀʏᴇʀ ʙᴏᴛ ᴡɪᴛʜ sᴏᴍᴇ ᴀᴡᴇsᴏᴍᴇ ғᴇᴀᴛᴜʀᴇs.\n\n💫 ɪғ ʏᴏᴜ ʜᴀᴠᴇ ᴀɴʏ ǫᴜᴇsᴛɪᴏɴs ᴛʜᴇɴ ᴊᴏɪɴ ᴏᴜʀ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ🤍...\n\n━━━━━━━━━━━━━━━━━━❄",
+    await message.reply_photo(
+        photo="https://images.unsplash.com/photo-1510519138101-570d1dca3d66?q=80&w=1080&auto=format&fit=crop",
+        caption=(
+            f"❤️ ʜᴇʏ {message.from_user.mention}\n\n"
+            f"🔮 ɪ ᴀᴍ **{MUSIC_BOT_NAME}**\n\n"
+            f"✨ ɪ ᴀᴍ ᴀ ғᴀsᴛ ᴀɴᴅ ᴘᴏᴡᴇʀғᴜʟ "
+            f"ᴍᴜsɪᴄ ᴘʟᴀʏᴇʀ ʙᴏᴛ ᴡɪᴛʜ "
+            f"sᴍᴏᴏᴛʜ ᴘᴇʀғᴏʀᴍᴀɴᴄᴇ.\n\n"
+            f"💫 ғᴏʀ ᴀɴʏ ʜᴇʟᴘ ᴏʀ sᴜᴘᴘᴏʀᴛ, "
+            f"ʏᴏᴜ ᴄᴀɴ ᴊᴏɪɴ ᴛʜᴇ ᴄᴏʀᴇ ᴄᴏᴍᴍᴜɴɪᴛʏ 🤍\n\n"
+            f"━━━━━━━━━━━━━━━━━━❄"
+        ),
         reply_markup=InlineKeyboardMarkup(
             [
-               [
+                [
             InlineKeyboardButton(
-                text="☆ ʙʀᴀɴᴅᴇᴅ 💗 ", url=f"https://t.me/BRANDRDKING82"
+                text="☆ ᴄᴏʀᴇ 💗 ", url=f"https://t.me/xxbga"
             ),
             InlineKeyboardButton(
-                text="☆ ꜱᴜᴘᴘᴏʀᴛ 💗", url=f"https://t.me/BRANDED_WORLD"
+                text="☆ ꜱᴜᴘᴘᴏʀᴛ 💗", url=f"https://t.me/iq4us"
             ),
         ],
                 [
             InlineKeyboardButton(
-                text="☆ ᴄʜᴀɴɴᴇʟ💗", url=f"https://t.me/BRANDRD_BOT"
+                text="☆ ᴄʜᴀɴɴᴇʟ💗", url=f"https://t.me/@devparadoxprotocol"
             ),
                 ],
                 [

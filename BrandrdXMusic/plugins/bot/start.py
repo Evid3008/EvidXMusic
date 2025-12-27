@@ -23,34 +23,38 @@ from BrandrdXMusic.utils.inline import help_pannel, private_panel, start_panel
 from config import BANNED_USERS
 from strings import get_string
 
+
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
 async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
-    await message.react("❤")
+
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
+
         if name[0:4] == "help":
             keyboard = help_pannel(_)
-            await message.reply_sticker("CAACAgUAAxkBAAEQI1RlTLnRAy4h9lOS6jgS5FYsQoruOAAC1gMAAg6ryVcldUr_lhPexzME")
             return await message.reply_photo(
                 photo=config.START_IMG_URL,
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
+
         if name[0:3] == "sud":
             await sudoers_list(client=client, message=message, _=_)
             if await is_on_off(2):
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"{message.from_user.mention} checked <b>sudo list</b>.\n\n<b>User ID:</b> <code>{message.from_user.id}</code>\n<b>Username:</b> @{message.from_user.username}",
                 )
             return
+
         if name[0:3] == "inf":
             m = await message.reply_text("🔎")
             query = (str(name)).replace("info_", "", 1)
             query = f"https://www.youtube.com/watch?v={query}"
             results = VideosSearch(query, limit=1)
+
             for result in (await results.next())["result"]:
                 title = result["title"]
                 duration = result["duration"]
@@ -60,9 +64,11 @@ async def start_pm(client, message: Message, _):
                 channel = result["channel"]["name"]
                 link = result["link"]
                 published = result["publishedTime"]
+
             searched_text = _["start_6"].format(
                 title, duration, views, published, channellink, channel, app.mention
             )
+
             key = InlineKeyboardMarkup(
                 [
                     [
@@ -71,6 +77,7 @@ async def start_pm(client, message: Message, _):
                     ],
                 ]
             )
+
             await m.delete()
             await app.send_photo(
                 chat_id=message.chat.id,
@@ -78,73 +85,66 @@ async def start_pm(client, message: Message, _):
                 caption=searched_text,
                 reply_markup=key,
             )
-            if await is_on_off(2):
-                return await app.send_message(
-                    chat_id=config.LOGGER_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
-                )
-    else:
+            return
 
-        try:
-            out = private_panel(_)
-            lol = await message.reply_text("𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐁𝐚𝐛𝐲 ꨄ︎ {}.. ❣️".format(message.from_user.mention))
-            await lol.edit_text("𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐁𝐚𝐛𝐲 ꨄ {}.. 🥳".format(message.from_user.mention))
-            await lol.edit_text("𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐁𝐚𝐛𝐲 ꨄ {}.. 💥".format(message.from_user.mention))
-            await lol.edit_text("𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐁𝐚𝐛𝐲 ꨄ {}.. 🤩".format(message.from_user.mention))
-            await lol.edit_text("𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐁𝐚𝐛𝐲 ꨄ {}.. 💌".format(message.from_user.mention))
-            await lol.edit_text("𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐁𝐚𝐛𝐲 ꨄ {}.. 💞".format(message.from_user.mention))
-               
-            await lol.delete()
-            lols = await message.reply_text("**⚡️ѕ**")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("⚡ѕт")        
-            await asyncio.sleep(0.1)
-            await lols.edit_text("**⚡ѕтα**")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("**⚡ѕтαя**")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("**⚡ѕтαят**")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("**⚡ѕтαятι**")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("**⚡ѕтαятιи**")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("**⚡ѕтαятιиg**")
-            await asyncio.sleep(0.1)
-            await lols.edit_text("**⚡ѕтαятιиg.**")
+    # ================== NORMAL /start FLOW ==================
 
-            await lols.edit_text("**⚡ѕтαятιиg....**")
+    try:
+        out = private_panel(_)
 
-            await lols.edit_text("**⚡ѕтαятιиg.**")
-            await lols.edit_text("**⚡ѕтαятιиg....**")
-            m = await message.reply_sticker("CAACAgUAAxkBAAEQI1BlTLmx7PtOO3aPNshEU2gCy7iAFgACNQUAApqMuVeA6eJ50VbvmDME")
-            if message.chat.photo:
-
-                userss_photo = await app.download_media(
-                    message.chat.photo.big_file_id,
-                )
-            else:
-                userss_photo = "assets/nodp.png"
-            if userss_photo:
-                chat_photo = userss_photo
-            chat_photo = userss_photo if userss_photo else START_IMG_URL
-
-        except AttributeError:
-            chat_photo = "assets/nodp.png"
-        await lols.delete()
-        await m.delete()
-        await message.reply_photo(
-            photo=chat_photo,
-            caption=_["start_2"].format(message.from_user.mention, app.mention),
-            reply_markup=InlineKeyboardMarkup(out),
+        # welcome animation (same as before)
+        lol = await message.reply_text(
+            f"𝐖𝐞𝐥𝐜𝐨𝐦𝐞 ꨄ︎ {message.from_user.mention} ❣️"
         )
-        if await is_on_off(config.LOG):
-            sender_id = message.from_user.id
-            sender_name = message.from_user.first_name
-            return await app.send_message(
-                config.LOG_GROUP_ID,
-                f"{message.from_user.mention} ʜᴀs sᴛᴀʀᴛᴇᴅ ʙᴏᴛ. \n\n**ᴜsᴇʀ ɪᴅ : {sender_id}\n**ᴜsᴇʀ ɴᴀᴍᴇ: {sender_name}",
-            )          
+        await lol.edit_text(f"𝐖𝐞𝐥𝐜𝐨𝐦𝐞 ꨄ {message.from_user.mention} 🥳")
+        await lol.edit_text(f"𝐖𝐞𝐥𝐜𝐨𝐦𝐞 ꨄ {message.from_user.mention} 💥")
+        await lol.edit_text(f"𝐖𝐞𝐥𝐜𝐨𝐦𝐞 ꨄ {message.from_user.mention} 🤩")
+        await lol.edit_text(f"𝐖𝐞𝐥𝐜𝐨𝐦𝐞 ꨄ {message.from_user.mention} 💌")
+        await lol.edit_text(f"𝐖𝐞𝐥𝐜𝐨𝐦𝐞 ꨄ {message.from_user.mention} 💞")
+        await lol.delete()
+
+        lols = await message.reply_text("⚡ѕ")
+        await asyncio.sleep(0.1)
+        await lols.edit_text("⚡ѕт")
+        await asyncio.sleep(0.1)
+        await lols.edit_text("⚡ѕтα")
+        await asyncio.sleep(0.1)
+        await lols.edit_text("⚡ѕтαя")
+        await asyncio.sleep(0.1)
+        await lols.edit_text("⚡ѕтαят")
+        await asyncio.sleep(0.1)
+        await lols.edit_text("⚡ѕтαятι")
+        await asyncio.sleep(0.1)
+        await lols.edit_text("⚡ѕтαятιи")
+        await asyncio.sleep(0.1)
+        await lols.edit_text("⚡ѕтαятιиg")
+        await asyncio.sleep(0.1)
+        await lols.edit_text("⚡ѕтαятιиg....")
+        await asyncio.sleep(0.2)
+        await lols.delete()
+
+        if message.chat.photo:
+            chat_photo = await app.download_media(message.chat.photo.big_file_id)
+        else:
+            chat_photo = config.START_IMG_URL
+
+    except Exception:
+        chat_photo = config.START_IMG_URL
+
+    await message.reply_photo(
+        photo=chat_photo,
+        caption=_["start_2"].format(message.from_user.mention, app.mention),
+        reply_markup=InlineKeyboardMarkup(out),
+    )
+
+    if await is_on_off(config.LOG):
+        sender_id = message.from_user.id
+        sender_name = message.from_user.first_name
+        await app.send_message(
+            config.LOG_GROUP_ID,
+            f"{message.from_user.mention} started the bot.\n\nUser ID: {sender_id}\nUser Name: {sender_name}",
+        )
+
 
 @app.on_message(filters.command(["start"]) & filters.group & ~BANNED_USERS)
 @LanguageStart
@@ -165,15 +165,18 @@ async def welcome(client, message: Message):
         try:
             language = await get_lang(message.chat.id)
             _ = get_string(language)
+
             if await is_banned_user(member.id):
                 try:
                     await message.chat.ban_member(member.id)
                 except:
                     pass
+
             if member.id == app.id:
                 if message.chat.type != ChatType.SUPERGROUP:
                     await message.reply_text(_["start_4"])
                     return await app.leave_chat(message.chat.id)
+
                 if message.chat.id in await blacklisted_chats():
                     await message.reply_text(
                         _["start_5"].format(
@@ -198,6 +201,6 @@ async def welcome(client, message: Message):
                 )
                 await add_served_chat(message.chat.id)
                 await message.stop_propagation()
+
         except Exception as ex:
             print(ex)
-

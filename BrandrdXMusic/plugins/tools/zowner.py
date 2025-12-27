@@ -4,20 +4,28 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from BrandrdXMusic import app
-from BrandrdXMusic.mongo.afkdb import LOGGERS as OWNERS
 from BrandrdXMusic.utils.database import add_served_chat, get_assistant
 
 
+# ─────────────────────────────────────────────
+# REPO COMMAND (EVID IDENTITY)
+# ─────────────────────────────────────────────
 @app.on_message(filters.command("repo"))
-async def help(client: Client, message: Message):
+async def repo_cmd(client: Client, message: Message):
     await message.reply_photo(
-        photo=f"https://telegra.ph/file/1aac9a42f6f35138da34b.jpg",
-        caption=f"""🍁𝐂𝐋𝐈𝐂𝐊🥰𝐁𝐄𝐋𝐎𝐖💝𝐁𝐔𝐓𝐓𝐎𝐍✨𝐓𝐎🙊𝐆𝐄𝐓🌱𝐑𝐄𝐏𝐎🍁""",
+        photo="https://graph.org/file/872dc8af2a36bed43b9b6.jpg",
+        caption=(
+            "**EVID CORE – Source Access**\n\n"
+            "This project source is not publicly listed.\n\n"
+            "👉 **Contact @AiAssistu_bot** to get access, setup help, "
+            "or official deployment support."
+        ),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "ƨσʋяcɛ", url=f"https://github.com/WCGKING/BrandrdXMusic"
+                        "Contact Support",
+                        url="https://t.me/AiAssistu_bot",
                     )
                 ]
             ]
@@ -25,16 +33,25 @@ async def help(client: Client, message: Message):
     )
 
 
+# ─────────────────────────────────────────────
+# CLONE COMMAND (RESTRICTED)
+# ─────────────────────────────────────────────
 @app.on_message(filters.command("clone"))
-async def clones(client: Client, message: Message):
+async def clone_cmd(client: Client, message: Message):
     await message.reply_photo(
-        photo=f"https://telegra.ph/file/1aac9a42f6f35138da34b.jpg",
-        caption=f"""**🙂You Are Not Sudo User So You Are Not Allowed To Clone Me.**\n**😌Click Given Below Button And Host Manually Otherwise Contact Owner Or Sudo Users For Clone.**""",
+        photo="https://graph.org/file/f4b34351a59061ba1c61b.jpg",
+        caption=(
+            "**Clone Restricted** ❌\n\n"
+            "You are not authorized to clone this bot.\n\n"
+            "If you want your own instance or custom build,\n"
+            "please contact **@AiAssistu_bot**."
+        ),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "ƨσʋяcɛ", url=f"https://github.com/WCGKING/BrandrdXMusic"
+                        "Request Access",
+                        url="https://t.me/AiAssistu_bot",
                     )
                 ]
             ]
@@ -42,76 +59,84 @@ async def clones(client: Client, message: Message):
     )
 
 
-# --------------------------------------------------------------------------------- #
-
-
+# ─────────────────────────────────────────────
+# SIMPLE GROUP PRESENCE CHECK
+# ─────────────────────────────────────────────
 @app.on_message(
     filters.command(
-        ["hi", "hii", "hello", "hui", "good", "gm", "ok", "bye", "welcome", "thanks"],
-        prefixes=["/", "!", "%", ",", "", ".", "@", "#"],
+        ["hi", "hii", "hello", "gm", "bye", "thanks", "welcome"],
+        prefixes=["/", "!", ".", ","],
     )
     & filters.group
 )
-async def bot_check(_, message):
-    chat_id = message.chat.id
-    await add_served_chat(chat_id)
+async def bot_check(_, message: Message):
+    await add_served_chat(message.chat.id)
 
 
-# --------------------------------------------------------------------------------- #
-
-
-import asyncio
-
-
+# ─────────────────────────────────────────────
+# GLOBAL BOT ADD (OWNER ONLY)
+# ─────────────────────────────────────────────
 @app.on_message(filters.command("gadd") & filters.user(int(7250012103)))
-async def add_allbot(client, message):
-    command_parts = message.text.split(" ")
+async def add_allbot(client: Client, message: Message):
+    command_parts = message.text.split(" ", 1)
     if len(command_parts) != 2:
-        await message.reply(
-            "**⚠️ ɪɴᴠᴀʟɪᴅ ᴄᴏᴍᴍᴀɴᴅ ғᴏʀᴍᴀᴛ. ᴘʟᴇᴀsᴇ ᴜsᴇ ʟɪᴋᴇ » `/gadd @Systumm_music_bot`**"
+        return await message.reply(
+            "**Usage:** `/gadd @BotUsername`"
         )
-        return
 
     bot_username = command_parts[1]
+
     try:
         userbot = await get_assistant(message.chat.id)
         bot = await app.get_users(bot_username)
         app_id = bot.id
+
         done = 0
         failed = 0
-        lol = await message.reply("🔄 **ᴀᴅᴅɪɴɢ ɢɪᴠᴇɴ ʙᴏᴛ ɪɴ ᴀʟʟ ᴄʜᴀᴛs!**")
-        await userbot.send_message(bot_username, f"/start")
+
+        status = await message.reply("🔄 Adding bot to all available chats...")
+
+        await userbot.send_message(bot_username, "/start")
+
         async for dialog in userbot.get_dialogs():
             if dialog.chat.id == -1001754457302:
                 continue
             try:
-
                 await userbot.add_chat_members(dialog.chat.id, app_id)
                 done += 1
-                await lol.edit(
-                    f"**🔂 ᴀᴅᴅɪɴɢ {bot_username}**\n\n**➥ ᴀᴅᴅᴇᴅ ɪɴ {done} ᴄʜᴀᴛs ✅**\n**➥ ғᴀɪʟᴇᴅ ɪɴ {failed} ᴄʜᴀᴛs ❌**\n\n**➲ ᴀᴅᴅᴇᴅ ʙʏ»** @{userbot.username}"
-                )
-            except Exception as e:
+            except:
                 failed += 1
-                await lol.edit(
-                    f"**🔂 ᴀᴅᴅɪɴɢ {bot_username}**\n\n**➥ ᴀᴅᴅᴇᴅ ɪɴ {done} ᴄʜᴀᴛs ✅**\n**➥ ғᴀɪʟᴇᴅ ɪɴ {failed} ᴄʜᴀᴛs ❌**\n\n**➲ ᴀᴅᴅɪɴɢ ʙʏ»** @{userbot.username}"
-                )
-            await asyncio.sleep(3)  # Adjust sleep time based on rate limits
 
-        await lol.edit(
-            f"**➻ {bot_username} ʙᴏᴛ ᴀᴅᴅᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ🎉**\n\n**➥ ᴀᴅᴅᴇᴅ ɪɴ {done} ᴄʜᴀᴛs ✅**\n**➥ ғᴀɪʟᴇᴅ ɪɴ {failed} ᴄʜᴀᴛs ❌**\n\n**➲ ᴀᴅᴅᴇᴅ ʙʏ»** @{userbot.username}"
+            await status.edit(
+                f"**Bot:** {bot_username}\n\n"
+                f"✅ Added: {done}\n"
+                f"❌ Failed: {failed}\n\n"
+                f"By: @{userbot.username}"
+            )
+            await asyncio.sleep(3)
+
+        await status.edit(
+            f"🎉 **Completed Successfully**\n\n"
+            f"✅ Added: {done}\n"
+            f"❌ Failed: {failed}\n\n"
+            f"By: @{userbot.username}"
         )
+
     except Exception as e:
-        await message.reply(f"Error: {str(e)}")
+        await message.reply(f"Error: `{e}`")
 
 
-__MODULE__ = "Sᴏᴜʀᴄᴇ"
+# ─────────────────────────────────────────────
+# MODULE INFO
+# ─────────────────────────────────────────────
+__MODULE__ = "Source"
 __HELP__ = """
-## Rᴇᴘᴏ Sᴏᴜʀᴄᴇ Mᴏᴅᴜᴇ
+**EVID CORE – Source Module**
 
-Tʜɪs ᴍᴏᴅᴜᴇ ᴘʀᴏᴠɪᴅᴇs ᴜᴛɪɪᴛʏ ᴄᴏᴍᴍᴀɴᴅs ғᴏʀ ᴜsᴇʀs ᴛᴏ ɪɴᴛᴇʀᴀᴄᴛ ᴡɪᴛʜ ᴛʜᴇ ʙᴏᴛ.
+Commands:
+- `/repo` : Get official source access information
+- `/clone` : Clone request (restricted)
 
-### Cᴏᴍᴍᴀɴᴅs:
-- `/ʀᴇᴘᴏ`: Gᴇᴛ ᴛʜᴇ ɪɴᴋ ᴛᴏ ᴛʜᴇ ʙᴏᴛ's sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ʀᴇᴘᴏsɪᴛᴏʀʏ.
+For access, support or deployment:
+👉 @AiAssistu_bot
 """
-

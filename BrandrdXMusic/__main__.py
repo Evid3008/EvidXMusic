@@ -1,6 +1,7 @@
 import asyncio
 import importlib
 from sys import argv
+
 from pyrogram import idle
 from pytgcalls.exceptions import NoActiveGroupCall
 
@@ -21,41 +22,56 @@ async def init():
         and not config.STRING4
         and not config.STRING5
     ):
-        LOGGER(__name__).error("Assistant client variables not defined, exiting...")
-        exit()
-    await sudo()
-    try:
-        users = await get_gbanned()
-        for user_id in users:
-            BANNED_USERS.add(user_id)
-        users = await get_banned_users()
-        for user_id in users:
-            BANNED_USERS.add(user_id)
-    except:
-        pass
-    await app.start()
-    for all_module in ALL_MODULES:
-        importlib.import_module("BrandrdXMusic.plugins" + all_module)
-    LOGGER("BrandrdXMusic.plugins").info("Successfully Imported Modules...")
-    await userbot.start()
-    await Hotty.start()
-    try:
-        await Hotty.stream_call("https://graph.org/file/e999c40cb700e7c684b75.mp4")
-    except NoActiveGroupCall:
-        LOGGER("BrandrdXMusic").error(
-            "Please turn on the videochat of your log group\channel.\n\nStopping Bot..."
+        LOGGER(__name__).error(
+            "Assistant client variables are missing. Please configure STRING sessions."
         )
         exit()
-    except:
+
+    await sudo()
+
+    try:
+        for user_id in await get_gbanned():
+            BANNED_USERS.add(user_id)
+        for user_id in await get_banned_users():
+            BANNED_USERS.add(user_id)
+    except Exception:
         pass
+
+    await app.start()
+
+    for all_module in ALL_MODULES:
+        importlib.import_module("BrandrdXMusic.plugins" + all_module)
+
+    LOGGER("EvidXMusic").info("All modules loaded successfully.")
+
+    await userbot.start()
+    await Hotty.start()
+
+    # 🔹 CLEAN SHORT STARTUP VIDEO (REPLACED)
+    try:
+        await Hotty.stream_call(
+            "https://files.catbox.moe/ghi3wy.mp4"
+        )
+    except NoActiveGroupCall:
+        LOGGER("EvidXMusic").error(
+            "Please enable video chat in your log group before starting the bot."
+        )
+        exit()
+    except Exception:
+        pass
+
     await Hotty.decorators()
-    LOGGER("BrandrdXMusic").info(
-        "ᴅʀᴏᴘ ʏᴏᴜʀ ɢɪʀʟꜰʀɪᴇɴᴅ'ꜱ ɴᴜᴍʙᴇʀ ᴀᴛ @BRANDED_PAID_CC ᴊᴏɪɴ @BRANDRD_BOT , @BRANDED_WORLD ꜰᴏʀ ᴀɴʏ ɪꜱꜱᴜᴇꜱ"
+
+    LOGGER("EvidXMusic").info(
+        "EVID CORE Music Bot is now running successfully."
     )
+
     await idle()
+
     await app.stop()
     await userbot.stop()
-    LOGGER("BrandrdXMusic").info("Stopping Brandrd Music Bot...")
+
+    LOGGER("EvidXMusic").info("EVID CORE Music Bot stopped cleanly.")
 
 
 if __name__ == "__main__":

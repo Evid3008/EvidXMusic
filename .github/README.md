@@ -1,108 +1,112 @@
-━━━━━━━━━━━━━━━━━━━━
+<!-- ===================================================== -->
+<!-- =================== EVID X X MUSIC ================== -->
+<!-- ===================================================== -->
 
-<h2 align="center">
-    ──「⛦🦋 𝗕𝗥𝗔𝗡𝗗𝗥𝗗 ✘ 𝗠𝗨𝗦𝗜𝗖 🦋⛦」──
-</h2>
-
-<p align="center">
-  <img src="https://telegra.ph/file/d02b81736a7e9519c6386.jpg">
-</p>
-
-<p align="center">
-<a href="https://github.com/WCGKING/stargazers"><img src="https://img.shields.io/github/stars/WCGKING/BrandrdXMusic?color=black&logo=github&logoColor=black&style=for-the-badge" alt="Stars" /></a>
-<a href="https://github.com/WCGKING/BrandrdXMusic/network/members"> <img src="https://img.shields.io/github/forks/WCGKING/BrandrdXMusic?color=black&logo=github&logoColor=black&style=for-the-badge" /></a>
-<a href="https://github.com/WCGKING/BrandrdXMusic/blob/master/LICENSE"> <img src="https://img.shields.io/badge/License-MIT-blueviolet?style=for-the-badge" alt="License" /> </a>
-<a href="https://www.python.org/"> <img src="https://img.shields.io/badge/Written%20in-Python-orange?style=for-the-badge&logo=python" alt="Python" /> </a>
-<a href="https://github.com/WCGKING/BrandrdXMusic/commits/WCGKING"> <img src="https://img.shields.io/github/last-commit/WCGKING/BrandrdXMusic?color=blue&logo=github&logoColor=green&style=for-the-badge" /></a>
-</p>
-
-━━━━━━━━━━━━━━━━━━━━
-</h2>
-<img src="https://readme-typing-svg.herokuapp.com?color=FF0000&width=420&lines=♦𝙳𝙴𝙿𝙻𝙾𝚈+𝙾𝙽+𝙷𝙴𝚁𝙾𝙺𝚄♦;📡+𝙽𝙾+𝙷𝙴𝚁𝙾𝙺𝚄+𝙱𝙰𝙽+𝙸𝚂𝚂𝚄𝙴+𝙰𝙻𝚂𝙾+𝚅𝙿𝚂+𝙳𝙴𝙿𝙻𝙾𝚈+📍+𝙿𝚁𝙴𝚂𝙴𝙽𝚃;❤️+𝙿𝙾𝚆𝙴𝚁𝙳+𝙱𝚈+𝗕𝗥𝗔𝗡𝗗𝗘𝗗+𝗞𝗜𝗡𝗚🔥">
+<!-- ===================== STYLE 1: GIF BANNER ===================== -->
+<!-- ACTIVE -->
+<h1 align="center">
+── 「 ✦ 👾 𝐄𝐕𝐈𝐃 ✘ ✘ 𝐌𝐔𝐒𝐈𝐂 👾 ✦ 」 ──
+</h1>
 
 <p align="center">
-  <img src="https://telegra.ph/file/925eade709484516c5fe3.jpg">
+ <img
+  src="https://files.catbox.moe/qq6yk6.gif"
+  alt="Dark Hacker Console"
+  width="100%"
+/>
 </p>
 
-<h3 align="center">
-    ─「 ᴅᴇᴩʟᴏʏ ᴏɴ ʜᴇʀᴏᴋᴜ 」─
-</h3>
+<!-- ===================== STYLE 2: NEON / CYBERPUNK ===================== -->
+<!--
+<h1 align="center">
+── 「 ✦ ⚡ 𝐄𝐕𝐈𝐃 ✘ ✘ 𝐌𝐔𝐒𝐈𝐂 ⚡ ✦ 」 ──
+</h1>
 
-<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/WCGKING/BrandrdXMusic"> <img src="https://img.shields.io/badge/Deploy%20On%20Heroku-black?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
+<p align="center">
+  <img
+    src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop"
+    width="100%"
+  />
+</p>
+-->
 
+<!-- ===================== STYLE 3: ULTRA-MINIMAL DARK ===================== -->
+<!--
+<h1 align="center">𝐄𝐕𝐈𝐃 ✘ ✘ 𝐌𝐔𝐒𝐈𝐂</h1>
+<p align="center"><b>Minimal • Dark • Powerful</b></p>
+-->
+
+<!-- ===================== STYLE 4: WAVEFORM STYLE ===================== -->
+<!--
+<h1 align="center">
+── 「 🎼 𝐄𝐕𝐈𝐃 ✘ ✘ 𝐌𝐔𝐒𝐈𝐂 🎼 」 ──
+</h1>
+
+<p align="center">
+  <img
+    src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png"
+    width="100%"
+  />
+</p>
+-->
+
+<p align="center">
+  <img src="https://img.shields.io/github/stars/Evid3008/EvidXMusic?style=for-the-badge&logo=github&color=00e5ff" />
+  <img src="https://img.shields.io/github/forks/Evid3008/EvidXMusic?style=for-the-badge&logo=github&color=7c4dff" />
+  <img src="https://img.shields.io/badge/License-GPL--3.0-purple?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Built%20With-Python-yellow?style=for-the-badge&logo=python" />
+  <img src="https://img.shields.io/github/last-commit/Evid3008/EvidXMusic?style=for-the-badge&logo=github&color=00c853" />
 </p>
 
-**𝙏𝙀𝙎𝙏 𝘽𝙊𝙏 ➣ [˹ꜱʏꜱᴛᴜᴍ ꭙ ᴍᴜꜱɪᴄ˼𓆩𔘓⃭𓆪](https://t.me/Systumm_music_bot)**
+<p align="center">
+  <img
+    src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=22&duration=2800&pause=1200&color=00E5FF&center=true&vCenter=true&width=900&lines=🎧+Next-Gen+Telegram+Music+Bot;⚡+Fast+•+Stable+•+Modern;🔁+Smart+Auto+Play+Enabled;🎶+Voice+Chat+Music+Streaming+Reimagined"
+  />
+</p>
 
-
-
-<img src="https://readme-typing-svg.herokuapp.com?color=FF0000&width=420&lines=⚠️𝗙𝗢𝗥𝗞+𝗧𝗛𝗜𝗦+𝗥𝗘𝗣𝗢+𝗙𝗜𝗥𝗦𝗧𝗟𝗬⚠️">
-
-<h3 align="center">
-    ─「 ᴅᴇᴩʟᴏʏ ᴏɴ ʟᴏᴄᴀʟ ʜᴏsᴛ/ ᴠᴘs 」─
-</h3>
-
-- Get your [Necessary Variables](https://github.com/WCGKING/BrandrdXMusic/blob/master/sample.env)
 ---
 
-### 🔧 Quick Setup
+## 🎵 About EvidXMusic
 
-1. **Upgrade & Update:**
-   ```bash
-   sudo apt-get update && sudo apt-get upgrade -y
-   ```
+**EvidXMusic** is a next-generation **Telegram Music Bot** built using **Python & Pyrogram v2**.  
+It delivers smooth, high-quality music streaming in Telegram voice chats with a modern interface and smart automation.
 
-2. **Install Required Packages:**
-   ```bash
-   sudo apt-get install python3-pip ffmpeg -y
-   ```
-3. **Setting up PIP**
-   ```bash
-   sudo pip3 install -U pip
-   ```
-4. **Installing Node**
-   ```bash
-   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash && source ~/.bashrc && nvm install v18
-   ```
-5. **Clone the Repository**
-   ```bash
-   git clone https://github.com/WCGKING/BrandrdXMusic && cd BrandrdXMusic
-   ```
-6. **Install Requirements**
-   ```bash
-   pip3 install -U -r requirements.txt
-   ```
-7. **Create .env  with sample.env**
-   ```bash
-   cp sample.env .env
-   ```
-   - Edit .env with your vars
-8. **Editing Vars:**
-   ```bash
-   vi .env
-   ```
-   - Edit .env with your values.
-   - Press `I` button on keyboard to start editing.
-   - Press `Ctrl + C`  once you are done with editing vars and type `:wq` to save .env or `:qa` to exit editing.
-9. **Installing tmux**
-    ```bash
-    sudo apt install tmux -y && tmux
-    ```
-10. **Run the Bot**
-    ```bash
-    bash start
-━━━━━━━━━━━━━━━━━━━━
+---
 
-<h3 align="center">
-    ─「 sᴜᴩᴩᴏʀᴛ 」─
-</h3>
+## 🚀 Features
 
-<p align="center">
-<a href="https://t.me/BRANDED_WORLD"><img src="https://img.shields.io/badge/-Support%20Group-blue.svg?style=for-the-badge&logo=Telegram"></a>
-</p>
+- 🎶 High-quality voice chat music streaming  
+- 🔍 YouTube search & instant play  
+- 📃 Queue & playlist management  
+- ⏯️ Play / Pause / Resume / Skip  
+- 🔁 **Auto Play** – automatically plays related tracks  
+- 🗳️ Vote-based admin controls  
+- 🌐 Multi-language support  
+- ⚡ Optimized for VPS & local hosting  
 
-<p align="center">
-<a href="https://t.me/BRANDED_PAID_CC"><img src="https://img.shields.io/badge/-Support%20Channel-blue.svg?style=for-the-badge&logo=Telegram"></a>
-</p>
+---
 
-- <b> _sᴩᴇᴄɪᴀʟ ᴛʜᴀɴᴋs ᴛᴏ [ᴛᴇᴀᴍ ʙʀᴀɴᴅᴇᴅ](https://github.com/WCGKING) ғᴏʀ [ʙʀᴀɴᴅᴇᴅ ᴍᴜsɪᴄ ʙᴏᴛ](https://t.me/BRANDED_PAID_CC)_</b>
+## 🧑‍💻 Developer & Project
+
+- **Developer:** EVID  
+- **Telegram:** [@iq4u8](https://t.me/iq4u8)  
+- **GitHub:** https://github.com/Evid3008  
+- **Repository:** https://github.com/Evid3008/EvidXMusic  
+
+---
+
+## 🛠 Deployment (VPS / Localhost)
+
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install python3-pip ffmpeg -y
+pip3 install -U pip
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+
+git clone https://github.com/Evid3008/EvidXMusic
+cd EvidXMusic
+pip install -U -r requirements.txt
+cp sample.env .env
+nano .env
+bash start

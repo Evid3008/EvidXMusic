@@ -41,19 +41,23 @@ async def helper_private(
         _ = get_string(language)
         keyboard = help_pannel(_)
         
-        await update.reply_video(
-            video="https://graph.org/file/84d30d4fd04570c0e0256.mp4",
-            caption=_["help_1"].format(SUPPORT_CHAT), reply_markup=keyboard)
+        await update.reply_photo(
+    photo="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1080&auto=format&fit=crop",
+    caption=_["help_1"].format(SUPPORT_CHAT),
+    reply_markup=keyboard
+)
+
 
 
 @app.on_message(filters.command(["help"]) & filters.group & ~BANNED_USERS)
 @LanguageStart
 async def help_com_group(client, message: Message, _):
     keyboard = private_help_panel(_)
-    await message.reply_video(
-        video="https://te.legra.ph/file/51293513e6af319726fe7.mp4",
-        caption=_["help_2"], reply_markup=InlineKeyboardMarkup(keyboard)
-    )
+    await message.reply_photo(
+    photo="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1080&auto=format&fit=crop",
+    caption=_["help_2"],
+    reply_markup=InlineKeyboardMarkup(keyboard)
+)
 
 @app.on_callback_query(filters.regex("help_callback") & ~BANNED_USERS)
 @languageCB

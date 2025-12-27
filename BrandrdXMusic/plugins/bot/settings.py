@@ -54,11 +54,14 @@ async def settings_mar(client, message: Message, _):
 @languageCB
 async def gib_repo(client, CallbackQuery, _):
     await CallbackQuery.edit_message_media(
-        InputMediaVideo("https://te.legra.ph/file/ef47f077b671f69f8d8f0.mp4"),
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data=f"settingsback_helper")]]
-        ),
-    )
+    InputMediaPhoto(
+        media="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1080&auto=format&fit=crop",
+        caption="⚙️ **EvidXMusic Settings**\n\nCustomize playback, permissions & controls easily."
+    ),
+    reply_markup=InlineKeyboardMarkup(
+        [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="settingsback_helper")]]
+    ),
+)
 
 @app.on_callback_query(
     filters.regex("settings_helper") & ~BANNED_USERS
