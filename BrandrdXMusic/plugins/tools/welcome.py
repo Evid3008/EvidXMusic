@@ -1,12 +1,24 @@
 import os
-from PIL import ImageDraw, Image, ImageFont, ImageChops
-from pyrogram import *
-from pyrogram.types import *
 from logging import getLogger
+
+from PIL import ImageDraw, Image, ImageFont, ImageChops
+from pyrogram import filters
+from pyrogram.types import (
+    ChatMemberUpdated,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    Message,
+)
+
 from BrandrdXMusic import app
-from config import LOG_CHANNEL_ID
+import config
 
 LOGGER = getLogger(__name__)
+
+# ─────────────────────────────────────────────
+# Safe LOG_CHANNEL_ID (NO CRASH)
+# ─────────────────────────────────────────────
+LOG_CHANNEL_ID = getattr(config, "LOG_CHANNEL_ID", None)
 
 # ─────────────────────────────────────────────
 # Simple in-memory welcome toggle DB
@@ -22,19 +34,14 @@ class WelDatabase:
         self.data[chat_id] = {}
 
     async def rm_wlcm(self, chat_id):
-        if chat_id in self.data:
-            del self.data[chat_id]
+        self.data.pop(chat_id, None)
+
 
 wlcm = WelDatabase()
 
 
 class temp:
-    ME = None
-    CURRENT = 2
-    CANCEL = False
     MELCOW = {}
-    U_NAME = None
-    B_NAME = None
 
 
 # ─────────────────────────────────────────────
@@ -52,16 +59,15 @@ def circle(pfp, size=(500, 500)):
     return pfp
 
 
-def welcomepic(pic, user, chatname, uid, uname):
-    background = Image.open("BrandrdXMusic/assets/welcome_bg.png")
+def welcomepic(pic, uid):
+    background = Image.open("BrandrdXMusic/assets/welcome_bg.png").convert("RGBA")
     pfp = Image.open(pic).convert("RGBA")
     pfp = circle(pfp).resize((825, 824))
 
     draw = ImageDraw.Draw(background)
-    font_big = ImageFont.truetype("BrandrdXMusic/assets/font.ttf", size=110)
-    font_small = ImageFont.truetype("BrandrdXMusic/assets/font.ttf", size=60)
+    font = ImageFont.truetype("BrandrdXMusic/assets/font.ttf", size=90)
 
-    draw.text((2100, 1420), f"ID: {uid}", fill=(255, 255, 255), font=font_big)
+    draw.text((2100, 1420), f"ID : {uid}", fill=(255, 255, 255), font=font)
     background.paste(pfp, (1990, 435), pfp)
 
     path = f"downloads/welcome_{uid}.png"
@@ -74,7 +80,6 @@ def welcomepic(pic, user, chatname, uid, uname):
 # ─────────────────────────────────────────────
 @app.on_chat_member_updated(filters.group, group=-3)
 async def greet_group(_, member: ChatMemberUpdated):
-    chat_id = member.chat.id
     if (
         not member.new_chat_member
         or member.new_chat_member.status in {"banned", "left", "restricted"}
@@ -82,39 +87,40 @@ async def greet_group(_, member: ChatMemberUpdated):
     ):
         return
 
+    chat_id = member.chat.id
     user = member.new_chat_member.user
+
     try:
         pic = await app.download_media(
-            user.photo.big_file_id, file_name=f"pp{user.id}.png"
+            user.photo.big_file_id,
+            file_name=f"downloads/pp{user.id}.png",
         )
-    except:
+    except Exception:
         pic = "BrandrdXMusic/assets/welcome_bg.png"
 
-    if temp.MELCOW.get(f"welcome-{chat_id}"):
+    old = temp.MELCOW.get(chat_id)
+    if old:
         try:
-            await temp.MELCOW[f"welcome-{chat_id}"].delete()
-        except:
+            await old.delete()
+        except Exception:
             pass
 
     try:
-        welcomeimg = welcomepic(
-            pic, user.first_name, member.chat.title, user.id, user.username
-        )
+        welcomeimg = welcomepic(pic, user.id)
 
-        temp.MELCOW[f"welcome-{chat_id}"] = await app.send_photo(
+        temp.MELCOW[chat_id] = await app.send_photo(
             chat_id,
             photo=welcomeimg,
-            caption=f"""
-✨ **WELCOME TO {member.chat.title}** ✨
-━━━━━━━━━━━━━━━━━━
-👤 **Name** : {user.mention}
-🆔 **ID** : `{user.id}`
-🔗 **Username** : @{user.username}
-
-⚡ **Powered By : EVID CORE**
-👑 **Owner : @xxbga**
-━━━━━━━━━━━━━━━━━━
-""",
+            caption=(
+                f"✨ **WELCOME TO {member.chat.title}** ✨\n"
+                f"━━━━━━━━━━━━━━━━━━\n"
+                f"👤 **Name** : {user.mention}\n"
+                f"🆔 **ID** : `{user.id}`\n"
+                f"🔗 **Username** : @{user.username}\n\n"
+                f"⚡ **Powered By : EVID CORE**\n"
+                f"👑 **Owner : @xxbga**\n"
+                f"━━━━━━━━━━━━━━━━━━"
+            ),
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -127,33 +133,41 @@ async def greet_group(_, member: ChatMemberUpdated):
             ),
         )
     except Exception as e:
-        LOGGER.error(e)
+        LOGGER.error(f"Welcome error: {e}")
 
-    try:
-        os.remove(f"downloads/welcome_{user.id}.png")
-        os.remove(f"downloads/pp{user.id}.png")
-    except:
-        pass
+    for f in (
+        f"downloads/welcome_{user.id}.png",
+        f"downloads/pp{user.id}.png",
+    ):
+        try:
+            os.remove(f)
+        except Exception:
+            pass
 
 
 # ─────────────────────────────────────────────
-# Bot added to new group log
+# Bot added to new group → optional log
 # ─────────────────────────────────────────────
 @app.on_message(filters.new_chat_members & filters.group, group=-1)
 async def bot_wel(_, message: Message):
+    if not LOG_CHANNEL_ID:
+        return
+
     for u in message.new_chat_members:
         if u.id == app.me.id:
-            await app.send_message(
-                LOG_CHANNEL_ID,
-                f"""
-➕ **NEW GROUP ADDED**
-━━━━━━━━━━━━━━━━━━
-📛 **Name** : {message.chat.title}
-🆔 **ID** : `{message.chat.id}`
-🔗 **Username** : @{message.chat.username}
-
-⚡ **Bot : {app.mention}**
-👑 **Owner : @xxbga**
-━━━━━━━━━━━━━━━━━━
-""",
-            )
+            try:
+                await app.send_message(
+                    LOG_CHANNEL_ID,
+                    (
+                        "➕ **NEW GROUP ADDED**\n"
+                        "━━━━━━━━━━━━━━━━━━\n"
+                        f"📛 **Name** : {message.chat.title}\n"
+                        f"🆔 **ID** : `{message.chat.id}`\n"
+                        f"🔗 **Username** : @{message.chat.username}\n\n"
+                        f"⚡ **Bot** : {app.mention}\n"
+                        f"👑 **Owner** : @xxbga\n"
+                        "━━━━━━━━━━━━━━━━━━"
+                    ),
+                )
+            except Exception as e:
+                LOGGER.error(f"Log send failed: {e}")
